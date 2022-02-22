@@ -1,11 +1,4 @@
-import {
-  Box,
-  Center,
-  Flex,
-  Grid,
-  GridItem,
-  SimpleGrid,
-} from "@chakra-ui/react";
+import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { SetStateAction, useState } from "react";
 import CodeDescription from "../../components/CodeDescription";
@@ -21,8 +14,9 @@ const Guide = () => {
     id: 0,
     title: "title",
     description: "description",
+    expectedOutput: "",
   };
-  const { id, title, description } = data;
+  const { id, title, description, expectedOutput } = data;
 
   return (
     <Grid templateColumns="2fr 1fr 1fr" gap={3} h="inherit">
@@ -45,11 +39,13 @@ const Guide = () => {
       </GridItem>
       <GridItem>
         <Box color="violet">Expected output:</Box>
-        <Box w="300px" h="200px" border="1px" bg="white">
-          <svg>
-            <circle cx="50" cy="50" r="40" />
-          </svg>
-        </Box>
+        <Box
+          w="300px"
+          h="200px"
+          border="1px"
+          bg="white"
+          dangerouslySetInnerHTML={{ __html: expectedOutput }}
+        ></Box>
       </GridItem>
     </Grid>
   );
