@@ -9,21 +9,12 @@ import { useAuth } from "../../contexts/AuthContext";
 const SignUp = () => {
   YupPassword(Yup);
   const initialValues = {
-    firstName: "",
-    lastName: "",
     email: "",
-    confirmEmail: "",
     password: "",
     confirmPassword: "",
   };
   const validationSchema = Yup.object({
-    firstName: Yup.string().required("Required"),
-    lastName: Yup.string().required("Required"),
     email: Yup.string().email("Invalid email address").required("Required"),
-    confirmEmail: Yup.string()
-      .email()
-      .required()
-      .oneOf([Yup.ref("email"), null], "Emails must match"),
     password: Yup.string().password().required("Required"),
     confirmPassword: Yup.string()
       .required()
@@ -47,27 +38,8 @@ const SignUp = () => {
         >
           <Form>
             <FormTextInput
-              label="First Name"
-              name="firstName"
-              type="text"
-              placeholder=""
-            />
-
-            <FormTextInput
-              label="Last Name"
-              name="lastName"
-              type="text"
-              placeholder=""
-            />
-            <FormTextInput
               label="Email Address"
               name="email"
-              type="email"
-              placeholder=""
-            />
-            <FormTextInput
-              label="Confirm Email"
-              name="confirmEmail"
               type="email"
               placeholder=""
             />
@@ -83,7 +55,6 @@ const SignUp = () => {
               name="confirmPassword"
               placeholder=""
             />
-
             <Button type="submit">Submit</Button>
           </Form>
         </Formik>
