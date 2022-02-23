@@ -1,17 +1,20 @@
 import { Alert, AlertIcon, AlertTitle, Button } from "@chakra-ui/react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { Form, Formik } from "formik";
 import Link from "next/link";
 import { useState } from "react";
 import FormTextInput from "../../components/Common/FormTextInput";
 import Layout from "../../components/Layout/Layout";
-import { useAuth } from "../../contexts/AuthContext";
+import { auth } from "../../firebase";
 
 const Login = () => {
   const initialValues = {
     email: "",
     password: "",
   };
-  const { login } = useAuth();
+  const login = (email: string, password: string) =>
+    signInWithEmailAndPassword(auth, email, password);
+
   const [error, setError] = useState("");
 
   const handleSubmit = async (values: any) => {
